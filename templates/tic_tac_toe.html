@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tic-Tac-Toe</title>
+  <style>
+/* style the game board */
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  height: 300px;
+  border: 5px solid #333;
+}
+
+/* style each space on the board */
+.board > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #333;
+  font-size: 48px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* style the X player's moves */
+.board > div[data-player="X"] {
+  color: #f00;
+}
+
+/* style the O player's moves */
+.board > div[data-player="O"] {
+  color: #00f;
+}
+
+  </style>
+</head>
+<body>
+  <h1>Tic-Tac-Toe</h1>
+  <div class="board">
+    <div data-row="0" data-col="0"></div>
+    <div data-row="0" data-col="1"></div>
+    <div data-row="0" data-col="2"></div>
+    <div data-row="1" data-col="0"></div>
+    <div data-row="1" data-col="1"></div>
+    <div data-row="1" data-col="2"></div>
+    <div data-row="2" data-col="0"></div>
+    <div data-row="2" data-col="1"></div>
+    <div data-row="2" data-col="2"></div>
+  </div>
+
+  <script>
+    const board = document.querySelector('.board');
+    board.addEventListener('click', handleClick);
+
+    function handleClick(event) {
+      function handleClick(event) {
+  const target = event.target;
+  if (!target.matches('div')) {
+    return;
+  }
+  if (target.textContent) {
+    return;
+  }
+  const row = target.getAttribute('data-row');
+  const col = target.getAttribute('data-col');
+  makeMove(row, col);
+}
+
+function
+    }
+
+    function makeMove(row, col) {
+      function makeMove(row, col) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/move');
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      const player = document.querySelector('#current-player').textContent;
+      const target = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+      target.textContent = player;
+      target.setAttribute('data-player', player);
+      if (xhr.responseText === 'win') {
+        alert(`Player ${player} has won!`);
+      }
+    }
+  };
+  xhr.send(`row=${row}&col=${col}`);
+}
+    }
+  </script>
+
+  
+</body>
+</html>
